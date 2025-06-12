@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "northwind-client"
+		},
+		{
+			"path": "NorthwindAPI"
+		}
+	],
+	"settings": {}
+}
