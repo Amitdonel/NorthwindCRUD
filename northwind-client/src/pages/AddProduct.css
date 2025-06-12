@@ -1,0 +1,57 @@
+/* AddProduct.css */
+
+.form {
+  margin-top: 20px;
+}
+
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.close-button {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: inherit;
+  cursor: pointer;
+}
+
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.form-buttons button {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-buttons button[type="submit"] {
+  background-color: var(--button-bg);
+  color: white;
+}
+
+.form-buttons button[type="submit"]:hover {
+  background-color: var(--button-hover);
+}
+
+.form-buttons button[type="button"] {
+  background-color: #ccc;
+  color: #222;
+}
+
+.form-buttons button[type="button"]:hover {
+  background-color: #bbb;
+}

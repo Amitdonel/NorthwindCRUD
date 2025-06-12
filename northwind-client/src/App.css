@@ -1,0 +1,74 @@
+:root {
+  --background-color: #f5f7fa;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --border-color: #e0e0e0;
+  --input-bg: #ffffff;
+  --button-bg: #007bff;
+  --button-hover: #0056b3;
+  --delete-bg: #dc3545;
+  --delete-hover: #b02a37;
+}
+
+[data-theme="dark"] {
+  --background-color: #181a1f;
+  --card-bg: #1e2127;
+  --text-color: #eaeaea;
+  --border-color: #2d2f36;
+  --input-bg: #2a2d34;
+  --button-bg: #3182ce;
+  --button-hover: #2b6cb0;
+  --delete-bg: #e63946;
+  --delete-hover: #ba1c2f;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* App layout styles */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.app-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.app-nav a {
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.app-nav a:hover {
+  border-color: var(--button-bg);
+  color: var(--button-bg);
+  background-color: rgba(0, 123, 255, 0.05);
+}
