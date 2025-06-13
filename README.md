@@ -18,29 +18,26 @@ Built with **React (TypeScript)** frontend, **ASP.NET 6 Web API** backend, and *
 
 ---
 
-## 🛠️ Tech Stack
+## ⚠️ Requirements
 
-### 🔹 Frontend
-- React + TypeScript
-- React Router
-- Axios
-- Custom CSS with dark mode using CSS variables
+To run this project locally, make sure you have:
 
-### 🔹 Backend
-- ASP.NET Core 6 Web API
-- Repository Pattern
-- SQL Server with Stored Procedures (running in Docker)
-- Swagger documentation
+- ✅ [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- ✅ [Node.js (v18+)](https://nodejs.org/)
+- ✅ [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- ✅ [SSMS or Azure Data Studio](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
+- ✅ [Git](https://git-scm.com/)
+- ✅ (Optional) [Postman](https://www.postman.com/downloads/)
 
 ---
 
-## ⚙️ Setup Instructions
+## 🛠️ Setup Instructions
 
 ### 1️⃣ Clone the repository
 
 ```bash
 git clone https://github.com/Amitdonel/NorthwindCRUD
-cd northwind-fullstack-app
+cd NorthwindCRUD
 ```
 
 ### 2️⃣ Run SQL Server using Docker
@@ -49,7 +46,15 @@ cd northwind-fullstack-app
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" -p 1433:1433 --name sql_server_northwind -d mcr.microsoft.com/mssql/server:2019-latest
 ```
 
-> Then import the **Northwind** database into this container using SSMS / Azure Data Studio.
+> ⚠️ **IMPORTANT**: After running the container, you must import the Northwind SQL schema manually.
+
+To do this:
+1. Open **SSMS** or **Azure Data Studio**
+2. Connect to `localhost,1433` using:
+   - Login: `sa`
+   - Password: `YourStrong!Passw0rd`
+3. Download the full database script from [here](https://en.wikiversity.org/wiki/Northwind_Database)
+4. Run the script to create all tables, data, and stored procedures
 
 ---
 
@@ -126,4 +131,3 @@ All code was reviewed, validated, and refactored before submission.
 3rd Year CS Student 
 
 ---
-
