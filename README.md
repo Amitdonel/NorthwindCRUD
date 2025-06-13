@@ -79,7 +79,7 @@ npm start
 
 ## 📬 Postman Collection (Bonus)
 
-A full **Postman collection** is included in the repo root:  
+A full **Postman collection** is included in the repo root - NorthwindAPI:  
 📁 `Northwind.postman_collection.json`
 
 - Import into Postman to test **all endpoints**
