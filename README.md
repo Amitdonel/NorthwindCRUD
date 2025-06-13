@@ -12,9 +12,17 @@ Built with **React (TypeScript)** frontend, **ASP.NET 6 Web API** backend, and *
 - ✏️ Update product details with pre-filled forms
 - ❌ Delete products with confirmation modals
 - 📊 View customer order statistics
-- 🌗 Switch between Light and Dark themes
 - 🔒 Robust error handling on both client and server
-- 🧪 [Bonus] Postman collection to test all API endpoints
+
+---
+
+## 🎁 Bonus Features
+- 🔗 Enforce referential integrity: prevent deletion if the product is in any existing order (or cascade removal if implemented)
+- 🌗 Switch between Light and Dark themes
+- 📤 Export product list to CSV or PDF
+- 📝 Form Persistence: draft inputs saved to localStorage, with option to clear
+- 🧹 Bulk Actions: select multiple products to delete or toggle status
+- 🧪Postman collection to test all API endpoints
 
 ---
 
