@@ -72,7 +72,7 @@ const AddProduct: React.FC = () => {
 
     try {
       await addProduct({ productName, supplierId: supplierId!, categoryId: categoryId!, price: price as number, unit });
-      setSuccessMessage(`Product "${productName}" added successfully.`);
+      setSuccessMessage(`Product "${productName}" added successfully!`);
       setProductName("");
       setUnit("");
       setPrice("");
