@@ -1,3 +1,4 @@
+/* Container for the theme toggle switch and label */
 .theme-toggle-container {
   display: flex;
   flex-direction: column;
@@ -5,12 +6,14 @@
   margin-bottom: 20px;
 }
 
+/* Small label under the toggle (e.g. "Switch to Dark Mode") */
 .theme-label {
   margin-top: 5px;
   font-size: 13px;
   color: var(--text-color);
 }
 
+/* Wrapper for the custom switch input */
 .switch {
   position: relative;
   display: inline-block;
@@ -18,12 +21,14 @@
   height: 30px;
 }
 
+/* Hide default checkbox input */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
+/* Styled slider with emoji + background */
 .slider {
   display: flex;
   align-items: center;
@@ -40,6 +45,7 @@
   font-size: 16px;
 }
 
+/* Circle (handle) inside the slider */
 .slider:before {
   content: "";
   position: absolute;
@@ -53,10 +59,12 @@
   z-index: 0;
 }
 
+/* Background color when dark mode is active */
 input:checked + .slider {
   background-color: #4caf50;
 }
 
+/* Slide the toggle handle to the right when checked */
 input:checked + .slider:before {
   transform: translateX(60px);
 }

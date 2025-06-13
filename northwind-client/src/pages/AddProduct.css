@@ -1,15 +1,18 @@
 /* AddProduct.css */
 
+/* Adds spacing between title and form */
 .form {
   margin-top: 20px;
 }
 
+/* Container for buttons – horizontal layout with spacing */
 .form-buttons {
   margin-top: 20px;
   display: flex;
   gap: 12px;
 }
 
+/* Close (×) button used in success or error banners */
 .close-button {
   position: absolute;
   top: 6px;
@@ -22,12 +25,7 @@
   cursor: pointer;
 }
 
-.form-buttons {
-  margin-top: 20px;
-  display: flex;
-  gap: 12px;
-}
-
+/* Style both buttons inside the form – width, padding, etc. */
 .form-buttons button {
   flex: 1;
   padding: 12px 20px;
@@ -38,20 +36,24 @@
   transition: background-color 0.2s ease;
 }
 
+/* Submit button – blue theme */
 .form-buttons button[type="submit"] {
   background-color: var(--button-bg);
   color: white;
 }
 
+/* Hover effect for submit button */
 .form-buttons button[type="submit"]:hover {
   background-color: var(--button-hover);
 }
 
+/* Clear draft button – neutral gray theme */
 .form-buttons button[type="button"] {
   background-color: #ccc;
   color: #222;
 }
 
+/* Hover effect for clear draft button */
 .form-buttons button[type="button"]:hover {
   background-color: #bbb;
 }

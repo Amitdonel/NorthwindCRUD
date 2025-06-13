@@ -1,7 +1,6 @@
 /* ProductList.css */
 
-/* Specific to Product List — search bar, action buttons, edit icon */
-
+/* Styling for the search input above the table */
 .search-input {
   padding: 12px 16px;
   width: 320px;
@@ -15,15 +14,18 @@
   transition: border-color 0.2s ease;
 }
 
+/* Highlight input on focus */
 .search-input:focus {
   outline: none;
   border-color: var(--button-bg);
 }
 
+/* Wrapper for the export + delete buttons */
 .actions {
   margin-bottom: 24px;
 }
 
+/* Styling all action buttons (CSV, PDF, Delete) */
 .actions button {
   margin-right: 12px;
   padding: 10px 16px;
@@ -38,26 +40,31 @@
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
+/* Hover effect for action buttons */
 .actions button:hover {
   background-color: var(--button-hover);
   transform: scale(1.02);
 }
 
+/* Disabled state styling for action buttons */
 .actions button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
   box-shadow: none;
 }
 
+/* Table row styling with hover effect and pointer cursor */
 .table-row {
   transition: background-color 0.2s ease;
   cursor: pointer;
 }
 
+/* Highlight row on hover */
 .table-row:hover {
   background-color: rgba(0,0,0,0.03);
 }
 
+/* Edit icon (✏️) hidden by default */
 .edit-icon {
   margin-left: 6px;
   visibility: hidden;
@@ -65,10 +72,12 @@
   opacity: 0.5;
 }
 
+/* Show edit icon only when row is hovered */
 .table-row:hover .edit-icon {
   visibility: visible;
 }
 
+/* Delete button styling inside each row */
 .delete-button {
   background-color: var(--delete-bg);
   color: white;
@@ -80,6 +89,7 @@
   transition: background-color 0.2s ease;
 }
 
+/* Hover effect for delete button */
 .delete-button:hover {
   background-color: var(--delete-hover);
 }

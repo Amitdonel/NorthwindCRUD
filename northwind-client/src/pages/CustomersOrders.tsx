@@ -4,11 +4,12 @@ import { TopCustomer } from "../types/TopCustomer";
 import "./CustomersOrders.css"; 
 import '../styles/ui.css';
 
-
+// Displays a list of customers and their order counts, including a summary of the top 3
 const CustomersOrders: React.FC = () => {
+  // Holds all customer order data fetched from the backend
   const [topCustomers, setTopCustomers] = useState<TopCustomer[]>([]);
 
-  // Load top customers once on mount
+  // Fetches customer orders when component mounts
   useEffect(() => {
     getCustomerOrders()
       .then(setTopCustomers)
@@ -19,7 +20,7 @@ const CustomersOrders: React.FC = () => {
     <div className="container">
       <h1 className="title">Customer Orders</h1>
 
-      {/* Top 3 Customers Summary Box */}
+      {/* Summary section: shows the top 3 customers by order count */}
       <div className="summary">
         <h2>Top 3 Customers</h2>
         {topCustomers.length > 0 ? (
@@ -35,7 +36,7 @@ const CustomersOrders: React.FC = () => {
         )}
       </div>
 
-      {/* Full Customer Table */}
+      {/* Full customer orders table */}
       <table className="table">
         <thead>
           <tr>

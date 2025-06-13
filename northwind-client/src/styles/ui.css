@@ -1,9 +1,10 @@
 /* Global Utility Styles for Layout, Forms, Tables, and Buttons */
 
 :root {
-  --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Global font for consistency */
 }
 
+/* Page layout container – centers content and adds padding */
 .container {
   padding: 40px;
   min-height: 100vh;
@@ -15,6 +16,7 @@
   align-items: center;
 }
 
+/* Main title styling */
 .title {
   font-size: 50px;
   font-weight: 600;
@@ -22,6 +24,7 @@
   text-align: center;
 }
 
+/* Form container – width, padding, background and shadow */
 .form {
   width: 100%;
   max-width: 600px;
@@ -31,12 +34,14 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
+/* Form label styling */
 .form label {
   display: block;
   margin-bottom: 6px;
   font-weight: 500;
 }
 
+/* Input and select fields – full width, padding, colors, and transitions */
 .form input,
 .form select {
   width: 100%;
@@ -50,12 +55,14 @@
   transition: border-color 0.2s ease;
 }
 
+/* Highlight border on focus */
 .form input:focus,
 .form select:focus {
   outline: none;
   border-color: var(--button-bg);
 }
 
+/* Table container – responsive, styled with soft corners and shadows */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -66,6 +73,7 @@
   font-size: 15px;
 }
 
+/* Table cells padding and colors */
 .table th,
 .table td {
   text-align: left;
@@ -73,20 +81,24 @@
   color: var(--text-color);
 }
 
+/* Header background and bold font */
 .table th {
   background-color: var(--input-bg);
   border-bottom: 2px solid var(--border-color);
   font-weight: 600;
 }
 
+/* Row separators */
 .table td {
   border-bottom: 1px solid var(--border-color);
 }
 
+/* Highlight row on hover */
 .table tr:hover {
   background-color: rgba(0, 0, 0, 0.03);
 }
 
+/* Success and error messages – banner styles */
 .success-banner,
 .error-banner {
   padding: 12px 16px;
@@ -96,16 +108,19 @@
   position: relative;
 }
 
+/* Success message colors */
 .success-banner {
   background-color: #d4edda;
   color: #155724;
 }
 
+/* Error message colors */
 .error-banner {
   background-color: #f8d7da;
   color: #721c24;
 }
 
+/* Close (×) button inside banners */
 .close-button {
   position: absolute;
   right: 10px;
@@ -118,6 +133,7 @@
   cursor: pointer;
 }
 
+/* Base button styling */
 .btn {
   padding: 10px 20px;
   font-size: 15px;
@@ -127,20 +143,24 @@
   transition: background-color 0.2s ease;
 }
 
+/* Primary button – uses custom theme variable */
 .btn-primary {
   background-color: var(--button-bg);
   color: white;
 }
 
+/* Hover state for primary button */
 .btn-primary:hover {
   background-color: var(--button-hover);
 }
 
+/* Secondary button – neutral colors for less emphasis */
 .btn-secondary {
   background-color: #ccc;
   color: #222;
 }
 
+/* Hover state for secondary button */
 .btn-secondary:hover {
   background-color: #bbb;
 }

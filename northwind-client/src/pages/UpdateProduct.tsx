@@ -7,6 +7,7 @@ import { Product } from "../types/Product";
 import "./UpdateProduct.css";
 import '../styles/ui.css';
 
+// Page for updating an existing product by ID (fetched via route param)
 const UpdateProduct: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const UpdateProduct: React.FC = () => {
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<boolean>(false);
 
-  // ✅ Fetch product + dropdown data
+  // Fetch product data and dropdown lists on mount
   useEffect(() => {
     if (!id) return;
 
@@ -39,7 +40,7 @@ const UpdateProduct: React.FC = () => {
     fetchData();
   }, [id]);
 
-  // ✅ Handle field change
+  // Handle input/select field changes and update product state accordingly
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     if (!product) return;
     const { name, value } = e.target;
@@ -53,7 +54,7 @@ const UpdateProduct: React.FC = () => {
     });
   };
 
-  // ✅ Handle form submission
+  // Handle form submission and send updated product to backend
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -74,6 +75,7 @@ const UpdateProduct: React.FC = () => {
     }
   };
 
+  // Show loading screen if product data hasn't loaded yet
   if (!product) return <p className="container">Loading...</p>;
 
   return (
@@ -89,6 +91,7 @@ const UpdateProduct: React.FC = () => {
         </div>
       )}
 
+      {/* Product form */}
       <form onSubmit={handleSubmit} className="form">
         <label>Product Name</label>
         <input name="productName" value={product.productName} onChange={handleChange} required />
@@ -96,7 +99,7 @@ const UpdateProduct: React.FC = () => {
         <label>Supplier</label>
         <select
           name="supplierID"
-          value={String(product.supplierID)} // ✅ fixed: cast to string
+          value={String(product.supplierID)} // Select fields require string values
           onChange={handleChange}
           required
         >
@@ -111,7 +114,7 @@ const UpdateProduct: React.FC = () => {
         <label>Category</label>
         <select
           name="categoryID"
-          value={String(product.categoryID)} // ✅ fixed: cast to string
+          value={String(product.categoryID)}
           onChange={handleChange}
           required
         >

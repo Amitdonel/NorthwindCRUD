@@ -2,15 +2,15 @@ using NorthwindAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --------------------------------------
-// ✨ Service Configuration
-// --------------------------------------
-builder.Services.AddControllers();
-builder.Services.AddScoped<ProductRepository>();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// ---------------------------------------------------
+// ✨ Service Configuration (Dependency Injection Setup)
+// ---------------------------------------------------
+builder.Services.AddControllers();                         // Add MVC controller support
+builder.Services.AddScoped<ProductRepository>();           // Register custom repository as scoped (1 per HTTP request)
+builder.Services.AddEndpointsApiExplorer();                // Enable minimal APIs to appear in Swagger
+builder.Services.AddSwaggerGen();                          // Enable Swagger documentation generator
 
-// ✅ CORS Policy
+// ✅ Configure CORS to allow frontend to access API
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -23,22 +23,23 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// --------------------------------------
-// 🚀 Middleware Pipeline
-// --------------------------------------
+// ---------------------------------------------------
+// 🚀 Middleware Pipeline (Request handling flow)
+// ---------------------------------------------------
 
-// 🔧 Swagger in Development Only
+// 🔧 Swagger enabled only in Development (not Production)
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseRouting();       // ⚠️ Must come before UseCors
-app.UseCors("AllowAll");
-app.UseAuthorization();
+app.UseHttpsRedirection();     // Force HTTPS instead of HTTP
+app.UseRouting();              // Set up routing for controller endpoints
+app.UseCors("AllowAll");       // Apply the defined CORS policy
+app.UseAuthorization();        // Enable [Authorize] support (even if not yet used)
 
-app.MapControllers();   // ✅ Maps routes from controllers
+// ✅ Map attribute-routed controllers (e.g., [Route("api/product")])
+app.MapControllers();
 
-app.Run();
+app.Run();                     // Start the app

@@ -5,11 +5,12 @@ import { Supplier } from "../types/Supplier";
 import "./AddProduct.css"; 
 import '../styles/ui.css';
 
-
+// Key used to store draft form data in localStorage
 const DRAFT_KEY = "addProductDraft";
 
 const AddProduct: React.FC = () => {
-  // Load form state from localStorage draft
+
+  // Loads saved form draft from localStorage (used to restore input after refresh)
   const getInitialDraft = () => {
     try {
       const draft = localStorage.getItem(DRAFT_KEY);
@@ -21,35 +22,35 @@ const AddProduct: React.FC = () => {
 
   const draft = getInitialDraft();
 
-  // Controlled form state
+  // Form field states, initialized with draft if available
   const [productName, setProductName] = useState(draft.productName || "");
   const [supplierId, setSupplierId] = useState<number | null>(draft.supplierId ?? null);
   const [categoryId, setCategoryId] = useState<number | null>(draft.categoryId ?? null);
   const [unit, setUnit] = useState(draft.unit || "");
   const [price, setPrice] = useState<number | "">(draft.price ?? "");
 
-  // Data for dropdowns
+  // Suppliers and categories used in dropdowns
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
 
-  // Form feedback + validation
+  // Messages and form errors for user feedback
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
 
-  // Fetch suppliers and categories
+  // Fetches supplier and category data once on component mount
   useEffect(() => {
     getSuppliers().then(setSuppliers);
     getCategories().then(setCategories);
   }, []);
 
-  // Save draft on every input change
+  // Saves form data to localStorage draft on every change
   useEffect(() => {
     const draftToSave = { productName, supplierId, categoryId, unit, price };
     localStorage.setItem(DRAFT_KEY, JSON.stringify(draftToSave));
   }, [productName, supplierId, categoryId, unit, price]);
 
-  // Basic validation
+  // Validates form fields before submission and returns errors if any
   const validate = () => {
     const errors: { [key: string]: string } = {};
     if (!productName.trim()) errors.productName = "Product name is required.";
@@ -61,7 +62,7 @@ const AddProduct: React.FC = () => {
     return errors;
   };
 
-  // Submit handler
+  // Handles form submission, validates input and attempts to add the product
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
@@ -85,7 +86,7 @@ const AddProduct: React.FC = () => {
     }
   };
 
-  // Clear draft handler
+  // Clears the form and removes draft from localStorage
   const handleClearDraft = () => {
     setProductName("");
     setUnit("");
@@ -110,8 +111,9 @@ const AddProduct: React.FC = () => {
       {/* Error message */}
       {errorMessage && <div className="error-banner">{errorMessage}</div>}
 
-      {/* Form UI */}
+      {/* Product form */}
       <form onSubmit={handleSubmit} className="form">
+
         <label>Product Name</label>
         <input
           value={productName}

@@ -1,5 +1,6 @@
 /* UpdateProduct.css */
 
+/* Shared input + select styles for update form */
 .form input,
 .form select {
   width: 100%;
@@ -14,7 +15,7 @@
   transition: border-color 0.2s ease;
 }
 
-
+/* Success message banner after product update */
 .success-banner {
   background-color: #d4edda;
   color: #155724;
@@ -25,6 +26,7 @@
   font-size: 14px;
 }
 
+/* Close (×) button inside success banner */
 .success-banner button {
   position: absolute;
   right: 10px;
@@ -37,6 +39,7 @@
   cursor: pointer;
 }
 
+/* Submit button styling */
 .form button[type="submit"] {
   background-color: var(--button-bg);
   color: white;
@@ -48,6 +51,7 @@
   transition: background-color 0.2s ease;
 }
 
+/* Hover state for submit button */
 .form button[type="submit"]:hover {
   background-color: var(--button-hover);
 }

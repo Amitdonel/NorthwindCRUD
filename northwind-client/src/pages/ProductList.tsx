@@ -9,7 +9,7 @@ import { saveAs } from "file-saver";
 import "./ProductList.css"; 
 import '../styles/ui.css';
 
-
+// Product list page with search, export (CSV/PDF), and single/bulk delete features
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,12 +18,12 @@ const ProductList: React.FC = () => {
   const [selectAll, setSelectAll] = useState(false);
   const navigate = useNavigate();
 
-  // Fetch products once on component mount
+  // Fetch all products on component mount
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  // Load all products from the backend
+  // Load products from backend and store in state
   const fetchProducts = async () => {
     try {
       const data = await getAllProducts();
@@ -33,7 +33,7 @@ const ProductList: React.FC = () => {
     }
   };
 
-  // Handle deletion of a single product
+  // Delete a single product after confirmation
   const handleDelete = async (productID: number) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this product?");
     if (!confirmDelete) return;
@@ -46,7 +46,7 @@ const ProductList: React.FC = () => {
     }
   };
 
-  // Handle bulk deletion of selected products
+  // Delete all selected products in bulk
   const handleBulkDelete = async () => {
     if (selectedIds.length === 0) return;
     const confirmDelete = window.confirm("Are you sure you want to delete the selected products?");
@@ -62,7 +62,7 @@ const ProductList: React.FC = () => {
     }
   };
 
-  // Export product data to CSV file
+  // Export product list as CSV using file-saver and manual formatting
   const exportToCSV = () => {
     const csvRows = [
       ["Product ID", "Name", "Category", "Supplier", "Price", "Unit"],
@@ -80,7 +80,7 @@ const ProductList: React.FC = () => {
     saveAs(blob, "products.csv");
   };
 
-  // Export product data to PDF file using jsPDF + autoTable
+  // Export product list to PDF using jsPDF + autoTable plugin
   const exportToPDF = () => {
     const doc = new jsPDF();
     doc.text("Product List", 14, 16);
@@ -99,20 +99,20 @@ const ProductList: React.FC = () => {
     doc.save("products.pdf");
   };
 
-  // Filter products based on search input
+  // Filter product list based on user input (name or category)
   const filteredProducts = products.filter(
     (p) =>
       p.productName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       p.categoryName?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Select or unselect all visible filtered rows
+  // Toggle select all checkboxes for visible rows
   const toggleSelectAll = () => {
     setSelectAll(!selectAll);
     setSelectedIds(!selectAll ? filteredProducts.map((p) => p.productID) : []);
   };
 
-  // Select or unselect a single row
+  // Toggle selection of individual row
   const toggleSelect = (id: number) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
@@ -123,6 +123,7 @@ const ProductList: React.FC = () => {
     <div className="container">
       <h1 className="title">Product List</h1>
 
+      {/* Search input field */}
       <input
         type="text"
         placeholder="Search by name or category..."
@@ -131,6 +132,7 @@ const ProductList: React.FC = () => {
         className="search-input"
       />
 
+      {/* Actions for export and bulk delete */}
       <div className="actions">
         <button onClick={exportToCSV}>📄 Export CSV</button>
         <button onClick={exportToPDF}>📄 Export PDF</button>
@@ -139,6 +141,7 @@ const ProductList: React.FC = () => {
         </button>
       </div>
 
+      {/* Product data table */}
       <table className="table">
         <thead>
           <tr>
@@ -164,7 +167,7 @@ const ProductList: React.FC = () => {
               className="table-row"
               onMouseEnter={() => setHoveredRow(p.productID)}
               onMouseLeave={() => setHoveredRow(null)}
-              onClick={() => navigate(`/update/${p.productID}`)}
+              onClick={() => navigate(`/update/${p.productID}`)} // Navigate to edit screen on row click
             >
               <td>
                 {p.productName}
@@ -177,7 +180,7 @@ const ProductList: React.FC = () => {
               <td onClick={(e) => e.stopPropagation()}>
                 <button
                   className="delete-button"
-                  onClick={() => handleDelete(p.productID)}
+                  onClick={() => handleDelete(p.productID)} // Delete this product only
                 >
                   🗑 Delete
                 </button>
@@ -186,7 +189,7 @@ const ProductList: React.FC = () => {
                 <input
                   type="checkbox"
                   checked={selectedIds.includes(p.productID)}
-                  onChange={() => toggleSelect(p.productID)}
+                  onChange={() => toggleSelect(p.productID)} // Select/unselect row for bulk actions
                 />
               </td>
             </tr>

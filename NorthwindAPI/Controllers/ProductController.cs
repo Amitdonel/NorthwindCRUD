@@ -5,17 +5,18 @@ using NorthwindAPI.Models;
 namespace NorthwindAPI.Controllers
 {
     [ApiController]
-    [Route("api/product")]
+    [Route("api/product")] // Base route for all product-related endpoints
     public class ProductController : ControllerBase
     {
         private readonly ProductRepository _repo;
 
+        // Inject repository dependency via constructor
         public ProductController(ProductRepository repo)
         {
             _repo = repo;
         }
 
-        // Centralized try/catch wrapper
+        // Wrapper to centralize error handling and avoid repetitive try/catch
         private async Task<IActionResult> SafeExecute(Func<Task<IActionResult>> action, string actionName)
         {
             try
@@ -29,9 +30,7 @@ namespace NorthwindAPI.Controllers
             }
         }
 
-        /// <summary>
-        /// Get all products in the system.
-        /// </summary>
+        // Get all products in the database
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
@@ -42,9 +41,7 @@ namespace NorthwindAPI.Controllers
                 return Ok(products);
             }, nameof(GetAllProducts));
 
-        /// <summary>
-        /// Get all available categories.
-        /// </summary>
+        // Get all categories to populate form dropdowns
         [HttpGet("categories")]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
@@ -55,9 +52,7 @@ namespace NorthwindAPI.Controllers
                 return Ok(categories);
             }, nameof(GetCategories));
 
-        /// <summary>
-        /// Get all available suppliers.
-        /// </summary>
+        // Get all suppliers to populate form dropdowns
         [HttpGet("suppliers")]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
@@ -68,9 +63,7 @@ namespace NorthwindAPI.Controllers
                 return Ok(suppliers);
             }, nameof(GetSuppliers));
 
-        /// <summary>
-        /// Get the number of orders per customer.
-        /// </summary>
+        // Return customer names with their order count (for analytics)
         [HttpGet("customer-orders")]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
@@ -81,9 +74,7 @@ namespace NorthwindAPI.Controllers
                 return Ok(data.Select(c => new { c.customerName, c.orderCount }));
             }, nameof(GetCustomerOrderCounts));
 
-        /// <summary>
-        /// Get a product by ID.
-        /// </summary>
+        // Fetch a single product by ID
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -97,9 +88,7 @@ namespace NorthwindAPI.Controllers
                 return Ok(product);
             }, nameof(GetProductById));
 
-        /// <summary>
-        /// Add a new product.
-        /// </summary>
+        // Add a new product to the system
         [HttpPost("add")]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
@@ -111,9 +100,7 @@ namespace NorthwindAPI.Controllers
                 return Ok("Product added successfully.");
             }, nameof(AddProduct));
 
-        /// <summary>
-        /// Update an existing product.
-        /// </summary>
+        // Update an existing product
         [HttpPut("update")]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
@@ -125,9 +112,7 @@ namespace NorthwindAPI.Controllers
                 return Ok("Product updated successfully.");
             }, nameof(UpdateProduct));
 
-        /// <summary>
-        /// Delete a product by ID.
-        /// </summary>
+        // Delete a product by its ID
         [HttpDelete("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]

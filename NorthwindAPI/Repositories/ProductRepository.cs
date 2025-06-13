@@ -4,22 +4,24 @@ using NorthwindAPI.Models;
 
 namespace NorthwindAPI.Repositories
 {
+    // Handles all product-related database operations
     public class ProductRepository
     {
         private readonly IConfiguration _config;
 
+        // Inject appsettings configuration to access DB connection string
         public ProductRepository(IConfiguration config)
         {
             _config = config;
         }
 
-        // 🔁 Centralized error logger
+        // Logs SQL-related errors to console (centralized logger)
         private void LogSqlError(string context, Exception ex)
         {
             Console.WriteLine($"🔥 SQL ERROR in {context}: {ex.Message}");
         }
 
-        /// <summary>Get all products with category and supplier names.</summary>
+        // Fetch all products with joined category and supplier names
         public async Task<List<Product>> GetAllProductsAsync()
         {
             var products = new List<Product>();
@@ -56,7 +58,7 @@ namespace NorthwindAPI.Repositories
             return products;
         }
 
-        /// <summary>Get number of orders per customer.</summary>
+        // Fetch number of orders per customer (for reporting)
         public async Task<List<(string customerName, int orderCount)>> GetCustomerOrderCountsAsync()
         {
             var result = new List<(string, int)>();
@@ -85,7 +87,7 @@ namespace NorthwindAPI.Repositories
             return result;
         }
 
-        /// <summary>Add a new product via stored procedure.</summary>
+        // Insert a new product using a stored procedure
         public async Task AddProductAsync(Product product)
         {
             try
@@ -112,7 +114,7 @@ namespace NorthwindAPI.Repositories
             }
         }
 
-        /// <summary>Get all categories (ID + Name).</summary>
+        // Load all categories from DB
         public async Task<List<Category>> GetCategoriesAsync()
         {
             var categories = new List<Category>();
@@ -142,7 +144,7 @@ namespace NorthwindAPI.Repositories
             return categories;
         }
 
-        /// <summary>Get all suppliers (ID + Name).</summary>
+        // Load all suppliers from DB
         public async Task<List<Supplier>> GetSuppliersAsync()
         {
             var suppliers = new List<Supplier>();
@@ -172,7 +174,7 @@ namespace NorthwindAPI.Repositories
             return suppliers;
         }
 
-        /// <summary>Get a single product by ID (with joins).</summary>
+        // Get a single product by ID (with JOIN to Category and Supplier)
         public async Task<Product?> GetProductByIdAsync(int id)
         {
             try
@@ -214,7 +216,7 @@ namespace NorthwindAPI.Repositories
             return null;
         }
 
-        /// <summary>Update product details using stored procedure.</summary>
+        // Update a product using stored procedure
         public async Task UpdateProductAsync(Product product)
         {
             try
@@ -242,7 +244,7 @@ namespace NorthwindAPI.Repositories
             }
         }
 
-        /// <summary>Delete product by ID using stored procedure.</summary>
+        // Delete product by ID using stored procedure
         public async Task<bool> DeleteProductAsync(int productId)
         {
             try
