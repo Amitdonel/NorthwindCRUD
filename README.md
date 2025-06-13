@@ -39,7 +39,7 @@ Built with **React (TypeScript)** frontend, **ASP.NET 6 Web API** backend, and *
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/northwind-fullstack-app.git
+git clone https://github.com/Amitdonel/NorthwindCRUD
 cd northwind-fullstack-app
 ```
 
