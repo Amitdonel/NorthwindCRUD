@@ -1,0 +1,186 @@
+{
+  "info": {
+    "name": "Northwind API",
+    "description": "Postman collection for Northwind fullstack assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7258/api/product",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7258",
+          "path": [
+            "api",
+            "product"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Product by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7258/api/product/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7258",
+          "path": [
+            "api",
+            "product",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productName\": \"New Test Product\",\n  \"supplierId\": 1,\n  \"categoryId\": 1,\n  \"price\": 49.99,\n  \"unit\": \"10 boxes\"\n}"
+        },
+        "url": {
+          "raw": "https://localhost:7258/api/product/add",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7258",
+          "path": [
+            "api",
+            "product",
+            "add"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Product",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productID\": 1,\n  \"productName\": \"Updated Product\",\n  \"supplierId\": 1,\n  \"categoryId\": 1,\n  \"price\": 59.99,\n  \"unit\": \"12 units\"\n}"
+        },
+        "url": {
+          "raw": "https://localhost:7258/api/product/update",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7258",
+          "path": [
+            "api",
+            "product",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Product",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7258/api/product/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7258",
+          "path": [
+            "api",
+            "product",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7258/api/product/categories",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7258",
+          "path": [
+            "api",
+            "product",
+            "categories"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Suppliers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7258/api/product/suppliers",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7258",
+          "path": [
+            "api",
+            "product",
+            "suppliers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Customer Orders",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7258/api/product/customer-orders",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7258",
+          "path": [
+            "api",
+            "product",
+            "customer-orders"
+          ]
+        }
+      }
+    }
+  ]
+}

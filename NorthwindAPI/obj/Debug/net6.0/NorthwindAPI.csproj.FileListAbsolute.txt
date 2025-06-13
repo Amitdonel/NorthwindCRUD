@@ -34,3 +34,5 @@ C:\Users\user\NorthwindCRUD\NorthwindAPI\bin\Debug\net6.0\runtimes\win-x64\nativ
 C:\Users\user\NorthwindCRUD\NorthwindAPI\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
 C:\Users\user\NorthwindCRUD\NorthwindAPI\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Data.SqlClient.dll
 C:\Users\user\NorthwindCRUD\NorthwindAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Data.SqlClient.dll
+C:\Users\user\NorthwindCRUD\NorthwindAPI\bin\Debug\net6.0\Northwind.postman_collection.json
+C:\Users\user\NorthwindCRUD\NorthwindAPI\obj\Debug\net6.0\NorthwindAPI.sourcelink.json

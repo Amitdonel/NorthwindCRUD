@@ -7,10 +7,10 @@ public class Product
     [JsonPropertyName("productName")]
     public string ProductName { get; set; } = null!;
 
-    [JsonPropertyName("supplierId")]
+    [JsonPropertyName("supplierID")]
     public int SupplierID { get; set; }
 
-    [JsonPropertyName("categoryId")]
+    [JsonPropertyName("categoryID")]
     public int CategoryID { get; set; }
 
     [JsonPropertyName("price")]

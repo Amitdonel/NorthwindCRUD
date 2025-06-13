@@ -4,9 +4,8 @@ import { getCategories, getProductById, getSuppliers, updateProduct } from "../a
 import { Category } from "../types/Category";
 import { Supplier } from "../types/Supplier";
 import { Product } from "../types/Product";
-import "./UpdateProduct.css"; 
+import "./UpdateProduct.css";
 import '../styles/ui.css';
-
 
 const UpdateProduct: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -18,7 +17,7 @@ const UpdateProduct: React.FC = () => {
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<boolean>(false);
 
-  // Fetch product + dropdown options
+  // ✅ Fetch product + dropdown data
   useEffect(() => {
     if (!id) return;
 
@@ -40,20 +39,26 @@ const UpdateProduct: React.FC = () => {
     fetchData();
   }, [id]);
 
-  // Handle input changes
+  // ✅ Handle field change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     if (!product) return;
     const { name, value } = e.target;
-    setProduct({ ...product, [name]: name === "price" ? parseFloat(value) : value });
+
+    setProduct({
+      ...product,
+      [name]:
+        name === "price" ? parseFloat(value) :
+        name === "supplierID" || name === "categoryID" ? parseInt(value) :
+        value
+    });
   };
 
-  // Handle submit
+  // ✅ Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setSuccess(false);
 
-    // Basic validation
     if (!product?.productName || !product.supplierID || !product.categoryID || !product.unit || !product.price) {
       setError("Please fill in all required fields.");
       return;
@@ -75,10 +80,8 @@ const UpdateProduct: React.FC = () => {
     <div className="container">
       <h2 className="title">Update Product</h2>
 
-      {/* Error banner */}
       {error && <div className="error-message">{error}</div>}
 
-      {/* Success banner */}
       {success && (
         <div className="success-banner">
           ✅ Product updated successfully
@@ -86,26 +89,35 @@ const UpdateProduct: React.FC = () => {
         </div>
       )}
 
-      {/* Update form */}
       <form onSubmit={handleSubmit} className="form">
         <label>Product Name</label>
         <input name="productName" value={product.productName} onChange={handleChange} required />
 
         <label>Supplier</label>
-        <select name="supplierID" value={product.supplierID} onChange={handleChange} required>
+        <select
+          name="supplierID"
+          value={String(product.supplierID)} // ✅ fixed: cast to string
+          onChange={handleChange}
+          required
+        >
           <option value="">-- Select --</option>
           {suppliers.map((s) => (
-            <option key={s.supplierID} value={s.supplierID}>
+            <option key={s.supplierID} value={s.supplierID.toString()}>
               {s.supplierName}
             </option>
           ))}
         </select>
 
         <label>Category</label>
-        <select name="categoryID" value={product.categoryID} onChange={handleChange} required>
+        <select
+          name="categoryID"
+          value={String(product.categoryID)} // ✅ fixed: cast to string
+          onChange={handleChange}
+          required
+        >
           <option value="">-- Select --</option>
           {categories.map((c) => (
-            <option key={c.categoryID} value={c.categoryID}>
+            <option key={c.categoryID} value={c.categoryID.toString()}>
               {c.categoryName}
             </option>
           ))}
